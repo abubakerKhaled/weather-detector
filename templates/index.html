@@ -62,17 +62,19 @@
   
           <div class="card shadow-0 border">
             <div class="card-body p-4">
-  
-              <h4 class="mb-1 sfw-normal">New York, US</h4>
-              <p class="mb-2">Current temperature: <strong>5.42°C</strong></p>
-              <p>Feels like: <strong>4.37°C</strong></p>
-              <p>Max: <strong>6.11°C</strong>, Min: <strong>3.89°C</strong></p>
-  
-              <div class="d-flex flex-row align-items-center">
-                <p class="mb-0 me-4">Scattered Clouds</p>
-                <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+              {% if error_message %}
+              <div class="alert alert-danger" role="alert">
+                {{ error_message }}
               </div>
-  
+              {% else %}
+                {% if weather_data.country %}
+                  <h4 class="mb-1 sfw-normal">{{ weather_data.city }}, {{ weather_data.country }}</h4>
+                  <p class="mb-2">Current temperature: <strong>{{ weather_data.current_temp }}</strong></p>
+                  <p>Feels like: <strong>{{ weather_data.feels_like }}</strong></p>
+                  <p>Max: <strong>{{ weather_data.max_temp }}</strong>, Min: <strong>{{ weather_data.min_temp }}</strong></p>
+                {% else %}
+                {% endif%}
+              {% endif %}
             </div>
           </div>
   
